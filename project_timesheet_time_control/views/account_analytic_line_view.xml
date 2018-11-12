@@ -9,7 +9,7 @@
                 <attribute name="invisible">1</attribute>
             </field>
             <field name="date" position="after">
-                <field name="date_time"/>
+                <field name="date_time" string="Date"/>
             </field>
             <field name="unit_amount" position="after">
                 <button name="button_end_work"
@@ -65,7 +65,7 @@
                 <attribute name="invisible">1</attribute>
             </field>
             <field name="date" position="after">
-                <field name="date_time"/>
+                <field name="date_time" string="Date"/>
             </field>
             <field name="unit_amount" position="replace">
                 <label for="unit_amount"/>
@@ -91,11 +91,11 @@
             <field name="arch" type="xml">
                 <xpath expr="//templates//field[@name='unit_amount']/.." position="after">
                     <div class="row">
-                        <div class="col-xs-12">
+                        <div class="col-12">
                             <button name="button_end_work"
                                     type="object"
                                     attrs="{'invisible': [('unit_amount', '>', 0)]}"
-                                    class="btn btn-primary pull-right btn-sm">
+                                    class="btn btn-primary float-right btn-sm">
                                 <i class="fa fa-stop-circle"/>
                                 Stop
                             </button>

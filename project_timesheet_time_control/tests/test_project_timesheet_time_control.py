@@ -3,7 +3,7 @@
 
 from odoo.tests import common
 from odoo import fields
-from datetime import timedelta, datetime
+from datetime import timedelta, date, datetime
 
 
 class TestProjectTimesheetTimeControl(common.TransactionCase):
@@ -27,10 +27,8 @@ class TestProjectTimesheetTimeControl(common.TransactionCase):
             'closed': True,
             'project_ids': [(6, 0, self.project.ids)],
         })
-        date_time = fields.Datetime.to_string(
-            datetime.now() - timedelta(hours=1))
         self.line = self.env['account.analytic.line'].create({
-            'date_time': date_time,
+            'date_time': datetime.now() - timedelta(hours=1),
             'task_id': self.task.id,
             'account_id': self.analytic_account.id,
             'name': 'Test line',
@@ -61,7 +59,7 @@ class TestProjectTimesheetTimeControl(common.TransactionCase):
         })
         self.assertEqual(line.date, fields.Date.today())
         line.date_time = '2016-03-23 18:27:00'
-        self.assertEqual(line.date, '2016-03-23')
+        self.assertEqual(line.date, date(2016, 3, 23))
 
     def test_button_end_work(self):
         self.line.button_end_work()
